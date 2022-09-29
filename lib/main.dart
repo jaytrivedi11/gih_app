@@ -1,14 +1,15 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:gih/finish_screen.dart';
-import 'package:gih/form_screen.dart';
+import 'package:gih/firebase_options.dart';
 import 'package:gih/phone.dart';
 import 'package:gih/verify.dart';
 
-
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(MaterialApp(
     initialRoute: 'phone',
     debugShowCheckedModeBanner: false,
