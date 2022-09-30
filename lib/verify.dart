@@ -14,6 +14,7 @@ class MyVerify extends StatefulWidget {
 class _MyVerifyState extends State<MyVerify> {
 
   final FirebaseAuth auth = FirebaseAuth.instance;
+  bool isLoading = false;
   @override
   Widget build(BuildContext context) {
     final defaultPinTheme = PinTheme(
@@ -114,20 +115,28 @@ class _MyVerifyState extends State<MyVerify> {
                             borderRadius: BorderRadius.circular(10))),
                     onPressed: () async{
 
+                      setState(() {
+                        isLoading = true;
+                      });
+
                       try{
                         PhoneAuthCredential credential = PhoneAuthProvider.credential(verificationId: MyPhone.verify, smsCode: code);
                         await auth.signInWithCredential(credential);
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => const FormScreen()),
-                        );
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const FormScreen()),);
                       }catch(e){
                         print(e);
+                        setState((){
+                          isLoading = false;
+                        });
+
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text("Wrong OTP please enter valid OTP"),
+                        ));
 
                       }
 
                     },
-                    child: Text("Verify Phone Number")),
+                    child: isLoading?CircularProgressIndicator(color: Colors.white,):Text("Verify Phone Number")),
               ),
               Row(
                 children: [

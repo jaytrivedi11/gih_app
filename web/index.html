@@ -38,8 +38,46 @@
   </script>
   <!-- This script adds the flutter initialization JS code -->
   <script src="flutter.js" defer></script>
+  <style>
+    .container {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      backg
+      round-color: #212332;
+    }
+
+    .indicator {
+      width: 10vw;
+    }
+  </style>
 </head>
 <body>
+<div id="loading_container" class="container">
+  <img src="./assets/loading.gif" alt="loading indicator" class="indicator">
+</div>
+<!-- This script installs service_worker.js to provide PWA functionality to
+     application. For more information, see:
+     https://developers.google.com/web/fundamentals/primers/service-workers -->
+<script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('flutter-first-frame', function () {
+        navigator.serviceWorker.register('flutter_service_worker.js');
+      });
+    }
+  </script>
+<script>
+    window.onload = function () {
+      setTimeout(function () {
+        var loadingIndicator = document.getElementById("loading_container");
+        if (loadingIndicator) {
+          loadingIndicator.remove();
+        }
+      }, 10000)
+    }
+  </script>
   <script>
     window.addEventListener('load', function(ev) {
       // Download main.dart.js

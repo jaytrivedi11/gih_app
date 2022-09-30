@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:gih/finish_screen.dart';
 
 class FormScreen extends StatefulWidget {
   const FormScreen({Key? key}) : super(key: key);
@@ -8,10 +9,12 @@ class FormScreen extends StatefulWidget {
   @override
   State<FormScreen> createState() => _FormScreenState();
 }
-enum SingingCharacter { lafayette, jefferson }
+enum FirstQuestion { a, b ,c}
+enum SecondQuestion { a, b ,c,d,e}
 
 class _FormScreenState extends State<FormScreen> {
-  SingingCharacter? _character = SingingCharacter.lafayette;
+  FirstQuestion? _character = FirstQuestion.a;
+  SecondQuestion? _secondQuestion = SecondQuestion.a;
   @override
   Widget build(BuildContext context) {
       return Scaffold(
@@ -47,11 +50,11 @@ class _FormScreenState extends State<FormScreen> {
                children: [
                  ListTile(
                    contentPadding: EdgeInsets.only(left: 0.0, right: 0.0,top: 0.0,bottom: 0.0),
-                   title: const Text('Lafayette'),
-                   leading: Radio<SingingCharacter>(
-                     value: SingingCharacter.lafayette,
+                   title: const Text('a. Through a person known to a police officer'),
+                   leading: Radio<FirstQuestion>(
+                     value: FirstQuestion.a,
                      groupValue: _character,
-                     onChanged: (SingingCharacter? value) {
+                     onChanged: (FirstQuestion? value) {
                        setState(() {
                          _character = value;
                        });
@@ -60,11 +63,11 @@ class _FormScreenState extends State<FormScreen> {
                  ),
                  ListTile(
                    contentPadding: EdgeInsets.only(left: 0.0, right: 0.0,top: 0.0,bottom: 0.0),
-                   title: const Text('Thomas Jefferson'),
-                   leading: Radio<SingingCharacter>(
-                     value: SingingCharacter.jefferson,
+                   title: const Text('b. With a neighbour/ local leader'),
+                   leading: Radio<FirstQuestion>(
+                     value: FirstQuestion.b,
                      groupValue: _character,
-                     onChanged: (SingingCharacter? value) {
+                     onChanged: (FirstQuestion? value) {
                        setState(() {
                          _character = value;
                        });
@@ -73,11 +76,11 @@ class _FormScreenState extends State<FormScreen> {
                  ),
                  ListTile(
                    contentPadding: EdgeInsets.only(left: 0.0, right: 0.0,top: 0.0,bottom: 0.0),
-                   title: const Text('Thomas Jefferson'),
-                   leading: Radio<SingingCharacter>(
-                     value: SingingCharacter.jefferson,
+                   title: const Text('c. On your own'),
+                   leading: Radio<FirstQuestion>(
+                     value: FirstQuestion.c,
                      groupValue: _character,
-                     onChanged: (SingingCharacter? value) {
+                     onChanged: (FirstQuestion? value) {
                        setState(() {
                          _character = value;
                        });
@@ -105,65 +108,65 @@ class _FormScreenState extends State<FormScreen> {
                 children: [
                   ListTile(
                     contentPadding: EdgeInsets.only(left: 0.0, right: 0.0,top: 0.0,bottom: 0.0),
-                    title: const Text('Lafayette'),
-                    leading: Radio<SingingCharacter>(
-                      value: SingingCharacter.lafayette,
-                      groupValue: _character,
-                      onChanged: (SingingCharacter? value) {
+                    title: const Text('a. More than 15 minutes'),
+                    leading: Radio<SecondQuestion>(
+                      value: SecondQuestion.a,
+                      groupValue: _secondQuestion,
+                      onChanged: (SecondQuestion? value) {
                         setState(() {
-                          _character = value;
+                          _secondQuestion = value;
                         });
                       },
                     ),
                   ),
                   ListTile(
                     contentPadding: EdgeInsets.only(left: 0.0, right: 0.0,top: 0.0,bottom: 0.0),
-                    title: const Text('Thomas Jefferson'),
-                    leading: Radio<SingingCharacter>(
-                      value: SingingCharacter.jefferson,
-                      groupValue: _character,
-                      onChanged: (SingingCharacter? value) {
+                    title: const Text('b. 15 minutes'),
+                    leading: Radio<SecondQuestion>(
+                      value: SecondQuestion.b,
+                      groupValue: _secondQuestion,
+                      onChanged: (SecondQuestion? value) {
                         setState(() {
-                          _character = value;
+                          _secondQuestion = value;
                         });
                       },
                     ),
                   ),
                   ListTile(
                     contentPadding: EdgeInsets.only(left: 0.0, right: 0.0,top: 0.0,bottom: 0.0),
-                    title: const Text('Thomas Jefferson'),
-                    leading: Radio<SingingCharacter>(
-                      value: SingingCharacter.jefferson,
-                      groupValue: _character,
-                      onChanged: (SingingCharacter? value) {
+                    title: const Text('c. 10 minutes'),
+                    leading: Radio<SecondQuestion>(
+                      value: SecondQuestion.c,
+                      groupValue: _secondQuestion,
+                      onChanged: (SecondQuestion? value) {
                         setState(() {
-                          _character = value;
+                          _secondQuestion = value;
                         });
                       },
                     ),
                   ),
                   ListTile(
                     contentPadding: EdgeInsets.only(left: 0.0, right: 0.0,top: 0.0,bottom: 0.0),
-                    title: const Text('Thomas Jefferson'),
-                    leading: Radio<SingingCharacter>(
-                      value: SingingCharacter.jefferson,
-                      groupValue: _character,
-                      onChanged: (SingingCharacter? value) {
+                    title: const Text('d. 5 minutes'),
+                    leading: Radio<SecondQuestion>(
+                      value: SecondQuestion.d,
+                      groupValue: _secondQuestion,
+                      onChanged: (SecondQuestion? value) {
                         setState(() {
-                          _character = value;
+                          _secondQuestion = value;
                         });
                       },
                     ),
                   ),
                   ListTile(
                     contentPadding: EdgeInsets.only(left: 0.0, right: 0.0,top: 0.0,bottom: 0.0),
-                    title: const Text('Thomas Jefferson'),
-                    leading: Radio<SingingCharacter>(
-                      value: SingingCharacter.jefferson,
-                      groupValue: _character,
-                      onChanged: (SingingCharacter? value) {
+                    title: const Text('e. Immediately'),
+                    leading: Radio<SecondQuestion>(
+                      value: SecondQuestion.e,
+                      groupValue: _secondQuestion,
+                      onChanged: (SecondQuestion? value) {
                         setState(() {
-                          _character = value;
+                          _secondQuestion = value;
                         });
                       },
                     ),
@@ -244,7 +247,7 @@ class _FormScreenState extends State<FormScreen> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10))),
                     onPressed: () {
-                      Navigator.pushNamed(context, 'finish');
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const FinishScreen()),);
                     },
                     child: Text("Submit")),
               ),
