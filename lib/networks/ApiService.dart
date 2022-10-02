@@ -48,7 +48,7 @@ class ApiService {
 
       var response = await http.post(url,body:body);
     print("jay : uper if"+body);
-      print("jay : uper if"+response.body);
+      print("jay : uper if"+"${response.request.}");
       print("jay : uper if"+url.toString());
       if (response.statusCode == 200) {
         print("jay here"+response.body);
