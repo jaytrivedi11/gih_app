@@ -2,9 +2,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:gih/finish_screen.dart';
+import 'package:gih/networks/ApiService.dart';
 
 class FormScreen extends StatefulWidget {
-  const FormScreen({Key? key}) : super(key: key);
+  String policstationid;
+  String policestationame;
+  String subdivisionid;
+  String districtid;
+  String name;
+  String mobile;
+  FormScreen({Key? key,required this.policestationame,required this.policstationid,required this.districtid,required this.subdivisionid,required this.name,required this.mobile}) : super(key: key);
+
 
   @override
   State<FormScreen> createState() => _FormScreenState();
@@ -12,9 +20,14 @@ class FormScreen extends StatefulWidget {
 enum FirstQuestion { a, b ,c}
 enum SecondQuestion { a, b ,c,d,e}
 
+
 class _FormScreenState extends State<FormScreen> {
-  FirstQuestion? _character = FirstQuestion.a;
-  SecondQuestion? _secondQuestion = SecondQuestion.a;
+  FirstQuestion _character = FirstQuestion.a;
+  SecondQuestion _secondQuestion = SecondQuestion.a;
+  var firstQuestion ="";
+  var secondQuetion ="";
+  var feedback ="";
+  var rating="";
   @override
   Widget build(BuildContext context) {
       return Scaffold(
@@ -56,7 +69,8 @@ class _FormScreenState extends State<FormScreen> {
                      groupValue: _character,
                      onChanged: (FirstQuestion? value) {
                        setState(() {
-                         _character = value;
+                         _character = value!;
+                         print(_character);
                        });
                      },
                    ),
@@ -69,7 +83,7 @@ class _FormScreenState extends State<FormScreen> {
                      groupValue: _character,
                      onChanged: (FirstQuestion? value) {
                        setState(() {
-                         _character = value;
+                         _character = value!;
                        });
                      },
                    ),
@@ -82,7 +96,7 @@ class _FormScreenState extends State<FormScreen> {
                      groupValue: _character,
                      onChanged: (FirstQuestion? value) {
                        setState(() {
-                         _character = value;
+                         _character = value!;
                        });
                      },
                    ),
@@ -114,7 +128,7 @@ class _FormScreenState extends State<FormScreen> {
                       groupValue: _secondQuestion,
                       onChanged: (SecondQuestion? value) {
                         setState(() {
-                          _secondQuestion = value;
+                          _secondQuestion = value!;
                         });
                       },
                     ),
@@ -127,7 +141,7 @@ class _FormScreenState extends State<FormScreen> {
                       groupValue: _secondQuestion,
                       onChanged: (SecondQuestion? value) {
                         setState(() {
-                          _secondQuestion = value;
+                          _secondQuestion = value!;
                         });
                       },
                     ),
@@ -140,7 +154,7 @@ class _FormScreenState extends State<FormScreen> {
                       groupValue: _secondQuestion,
                       onChanged: (SecondQuestion? value) {
                         setState(() {
-                          _secondQuestion = value;
+                          _secondQuestion = value!;
                         });
                       },
                     ),
@@ -153,7 +167,7 @@ class _FormScreenState extends State<FormScreen> {
                       groupValue: _secondQuestion,
                       onChanged: (SecondQuestion? value) {
                         setState(() {
-                          _secondQuestion = value;
+                          _secondQuestion = value!;
                         });
                       },
                     ),
@@ -166,7 +180,8 @@ class _FormScreenState extends State<FormScreen> {
                       groupValue: _secondQuestion,
                       onChanged: (SecondQuestion? value) {
                         setState(() {
-                          _secondQuestion = value;
+                          _secondQuestion = value!;
+                          print(_secondQuestion);
                         });
                       },
                     ),
@@ -196,11 +211,14 @@ class _FormScreenState extends State<FormScreen> {
                 ),
                 Expanded(
                     child: TextField(
+                      onChanged: (value){
+                        feedback = value;
+                      },
                       textInputAction: TextInputAction.next,
                       keyboardType: TextInputType.text,
                       decoration: InputDecoration(
                         border: InputBorder.none,
-                        hintText: "Name",
+                        hintText: "Discribe overal expirencel",
 
                       ),
                     ))
@@ -223,7 +241,6 @@ class _FormScreenState extends State<FormScreen> {
             initialRating: 3,
             minRating: 1,
             direction: Axis.horizontal,
-            allowHalfRating: true,
             itemCount: 5,
             itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
             itemBuilder: (context, _) => Icon(
@@ -231,6 +248,8 @@ class _FormScreenState extends State<FormScreen> {
               color: Colors.amber,
             ),
             onRatingUpdate: (rating) {
+
+              rating=rating;
               print(rating);
             },
           ),
@@ -246,8 +265,11 @@ class _FormScreenState extends State<FormScreen> {
                         primary: Colors.indigo,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10))),
-                    onPressed: () {
+                    onPressed: () async{
+                      print("jay2"+widget.name+ widget.mobile+_character.toString()+_secondQuestion.toString()+feedback+3.toString()+widget.policstationid+widget.subdivisionid+ widget.districtid);
                       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const FinishScreen()),);
+                      await ApiService().sendFeedback(widget.name, widget.mobile, _character,_secondQuestion,feedback, 3, widget.policstationid, widget.subdivisionid, widget.districtid);
+
                     },
                     child: Text("Submit")),
               ),

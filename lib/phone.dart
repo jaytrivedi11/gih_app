@@ -20,6 +20,7 @@ class _MyPhoneState extends State<MyPhone> {
   TextEditingController countryController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   var phone ="";
+  var name ="";
   bool isLoading = false;
   var stationData;
   @override
@@ -34,7 +35,7 @@ class _MyPhoneState extends State<MyPhone> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: FutureBuilder(
-        future: ApiService().getUsers(widget.id),
+        future: ApiService().getPoliceStation(widget.id),
         builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
           if(snapshot.hasData){
           return Form(
@@ -91,6 +92,9 @@ class _MyPhoneState extends State<MyPhone> {
                           ),
                           Expanded(
                               child: TextFormField(
+                                onChanged: (value){
+                                  name=value;
+                                },
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
                                     return 'Please enter Your full name';
@@ -102,6 +106,7 @@ class _MyPhoneState extends State<MyPhone> {
                                 decoration: InputDecoration(
                                   border: InputBorder.none,
                                   hintText: "Name",
+
 
                                 ),
                               ))
@@ -160,7 +165,7 @@ class _MyPhoneState extends State<MyPhone> {
                                 keyboardType: TextInputType.phone,
                                 decoration: InputDecoration(
                                   border: InputBorder.none,
-                                  hintText: "Phone",
+                                  hintText: "Enter your Mobile number",
                                 ),
                               ))
                         ],
@@ -205,7 +210,14 @@ class _MyPhoneState extends State<MyPhone> {
                                   print("verificaton id" + verificationId);
                                   print("otp" + resendToken.toString());
                                   MyPhone.verify = verificationId;
-                                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const MyVerify()),);
+                                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>  MyVerify(
+                                    policstationid: snapshot.data["policestationID"],
+                                    policestationame: snapshot.data["policestationName"],
+                                    subdivisionid: snapshot.data["subdivisionID"],
+                                    districtid: snapshot.data["districtID"],
+                                    mobile:phone,
+                                    name: name,
+                                  )),);
                                 },
                                 codeAutoRetrievalTimeout: (String verificationId) {
                                   print("verify" + verificationId);

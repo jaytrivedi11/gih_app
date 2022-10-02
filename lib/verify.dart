@@ -5,7 +5,18 @@ import 'package:gih/phone.dart';
 import 'package:pinput/pinput.dart';
 
 class MyVerify extends StatefulWidget {
-  const MyVerify({Key? key}) : super(key: key);
+  String policstationid;
+  String policestationame;
+  String subdivisionid;
+  String districtid;
+  String mobile;
+  String name;
+   MyVerify({Key? key,required this.policestationame,required this.policstationid,required this.districtid,required this.subdivisionid,required this.name,required this.mobile}) : super(key: key);
+
+
+
+
+
 
   @override
   State<MyVerify> createState() => _MyVerifyState();
@@ -122,7 +133,14 @@ class _MyVerifyState extends State<MyVerify> {
                       try{
                         PhoneAuthCredential credential = PhoneAuthProvider.credential(verificationId: MyPhone.verify, smsCode: code);
                         await auth.signInWithCredential(credential);
-                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const FormScreen()),);
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>  FormScreen(
+                          policestationame: widget.policestationame,
+                          policstationid:widget.policstationid ,
+                          subdivisionid: widget.subdivisionid,
+                          districtid:widget.districtid ,
+                          mobile: widget.mobile,
+                          name: widget.name,
+                        )),);
                       }catch(e){
                         print(e);
                         setState((){

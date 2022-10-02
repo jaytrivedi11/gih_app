@@ -15,7 +15,7 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(MaterialApp(
-    initialRoute: 'phone',
+    initialRoute: 'form/63356d02829140309235c28b',
     debugShowCheckedModeBanner: false,
     onGenerateRoute: Flurorouter.router.generator,
     routes: {
