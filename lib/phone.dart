@@ -1,13 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:gih/model/PoliceStationModel.dart';
 import 'package:gih/verify.dart';
 
 import 'networks/ApiService.dart';
 
 class MyPhone extends StatefulWidget {
-   MyPhone({Key? key,required this.id}) : super(key: key);
+  MyPhone({Key? key, required this.id}) : super(key: key);
 
   static String verify = "";
   String id;
@@ -19,8 +17,8 @@ class MyPhone extends StatefulWidget {
 class _MyPhoneState extends State<MyPhone> {
   TextEditingController countryController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  var phone ="";
-  var name ="";
+  var phone = "";
+  var name = "";
   bool isLoading = false;
   var stationData;
   @override
@@ -30,28 +28,30 @@ class _MyPhoneState extends State<MyPhone> {
     super.initState();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: FutureBuilder(
-        future: ApiService().getPoliceStation(widget.id),
-        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-          if(snapshot.hasData){
+        body: FutureBuilder(
+      future: ApiService().getPoliceStation(widget.id),
+      builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+        if (snapshot.hasData) {
           return Form(
             key: _formKey,
             child: Container(
-              margin: EdgeInsets.only(left: 25, right: 25),
+              margin: const EdgeInsets.only(left: 25, right: 25),
               alignment: Alignment.center,
               child: SingleChildScrollView(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      "Wellcome to ${snapshot.data["policestationName"]}",
-                      style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                      "Thank you for visiting \n${snapshot.data["policestationName"]}",
+                      style: const TextStyle(
+                          fontSize: 22, fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.center,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 25,
                     ),
                     Image.asset(
@@ -59,24 +59,25 @@ class _MyPhoneState extends State<MyPhone> {
                       width: 150,
                       height: 150,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 25,
                     ),
-                    Text(
+                    const Text(
                       "Phone Verification",
-                      style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                      style:
+                          TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
-                    Text(
+                    const Text(
                       "We need to register your phone without getting started!",
                       style: TextStyle(
                         fontSize: 16,
                       ),
                       textAlign: TextAlign.center,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 30,
                     ),
                     Container(
@@ -87,36 +88,34 @@ class _MyPhoneState extends State<MyPhone> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             width: 10,
                           ),
                           Expanded(
                               child: TextFormField(
-                                onChanged: (value){
-                                  name=value;
-                                },
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Please enter Your full name';
-                                  }
-                                  return null;
-                                },
-                                textInputAction: TextInputAction.next,
-                                keyboardType: TextInputType.text,
-                                decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  hintText: "Name",
-
-
-                                ),
-                              ))
+                            onChanged: (value) {
+                              name = value;
+                            },
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please enter Your full name';
+                              }
+                              return null;
+                            },
+                            textInputAction: TextInputAction.next,
+                            textCapitalization: TextCapitalization.words,
+                            keyboardType: TextInputType.name,
+                            decoration: const InputDecoration(
+                              border: InputBorder.none,
+                              hintText: "Name",
+                            ),
+                          ))
                         ],
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
-
                     Container(
                       height: 55,
                       decoration: BoxDecoration(
@@ -125,7 +124,7 @@ class _MyPhoneState extends State<MyPhone> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             width: 10,
                           ),
                           SizedBox(
@@ -134,44 +133,44 @@ class _MyPhoneState extends State<MyPhone> {
                               textInputAction: TextInputAction.next,
                               controller: countryController,
                               keyboardType: TextInputType.number,
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 border: InputBorder.none,
                               ),
                               readOnly: true,
                             ),
                           ),
-                          Text(
+                          const Text(
                             "|",
                             style: TextStyle(fontSize: 33, color: Colors.grey),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 10,
                           ),
                           Expanded(
                               child: TextFormField(
-                                textInputAction: TextInputAction.done,
-                                onChanged: (value){
-                                  phone=value;
-                                },
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Please enter Your number';
-                                  }
-                                  if (value.length<10 || value.length>10) {
-                                    return 'please enter valid number';
-                                  }
-                                  return null;
-                                },
-                                keyboardType: TextInputType.phone,
-                                decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  hintText: "Enter your Mobile number",
-                                ),
-                              ))
+                            textInputAction: TextInputAction.done,
+                            onChanged: (value) {
+                              phone = value;
+                            },
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please enter Your number';
+                              }
+                              if (value.length < 10 || value.length > 10) {
+                                return 'please enter valid number';
+                              }
+                              return null;
+                            },
+                            keyboardType: TextInputType.phone,
+                            decoration: const InputDecoration(
+                              border: InputBorder.none,
+                              hintText: "Enter your Mobile number",
+                            ),
+                          ))
                         ],
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     SizedBox(
@@ -182,60 +181,73 @@ class _MyPhoneState extends State<MyPhone> {
                               primary: Colors.indigo,
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10))),
-                          onPressed: () async{
-                            if(_formKey.currentState!.validate()){
+                          onPressed: () async {
+                            if (_formKey.currentState!.validate()) {
                               setState(() {
                                 isLoading = true;
                               });
 
-                              print(phone);
                               await FirebaseAuth.instance.verifyPhoneNumber(
-                                phoneNumber: '${countryController.text + phone}',
+                                phoneNumber:
+                                    '${countryController.text + phone}',
                                 verificationCompleted:
                                     (PhoneAuthCredential credential) {},
                                 verificationFailed: (FirebaseAuthException e) {
-                                  print("error");
                                   print(e);
                                   setState(() {
                                     isLoading = false;
                                   });
                                   ScaffoldMessenger.of(context)
-                                      .showSnackBar(SnackBar(
+                                      .showSnackBar(const SnackBar(
                                     content: Text("Failed please try again"),
                                   ));
                                 },
                                 timeout: const Duration(seconds: 30),
                                 codeSent:
                                     (String verificationId, int? resendToken) {
-                                  print("verificaton id" + verificationId);
-                                  print("otp" + resendToken.toString());
                                   MyPhone.verify = verificationId;
-                                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>  MyVerify(
-                                    policstationid: snapshot.data["policestationID"],
-                                    policestationame: snapshot.data["policestationName"],
-                                    subdivisionid: snapshot.data["subdivisionID"],
-                                    districtid: snapshot.data["districtID"],
-                                    mobile:phone,
-                                    name: name,
-                                  )),);
+                                  Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => MyVerify(
+                                              policstationid: snapshot
+                                                  .data["policestationID"],
+                                              policestationame: snapshot
+                                                  .data["policestationName"],
+                                              subdivisionid: snapshot
+                                                  .data["subdivisionID"],
+                                              districtid:
+                                                  snapshot.data["districtID"],
+                                              mobile: phone,
+                                              name: name,
+                                            )),
+                                  );
                                 },
-                                codeAutoRetrievalTimeout: (String verificationId) {
-                                  print("verify" + verificationId);
-                                },
+                                codeAutoRetrievalTimeout:
+                                    (String verificationId) {},
                               );
                             }
                             // Navigator.pushNamed(context, 'verify');
                           },
-                          child: isLoading?CircularProgressIndicator(color: Colors.white,):Text("Send the code")),
+                          child: isLoading
+                              ? const CircularProgressIndicator(
+                                  color: Colors.white,
+                                  strokeWidth: 3,
+                                )
+                              : const Text("Send the code")),
                     )
                   ],
                 ),
               ),
             ),
-          );} else{
-            return Center(child: CircularProgressIndicator());
-          }
-        },)
-    );
+          );
+        } else {
+          return const Center(
+              child: CircularProgressIndicator(
+            strokeWidth: 1,
+          ));
+        }
+      },
+    ));
   }
 }

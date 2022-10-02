@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class FinishScreen extends StatefulWidget {
@@ -19,7 +18,9 @@ class _FinishScreenState extends State<FinishScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(height: 50,),
+              SizedBox(
+                height: 50,
+              ),
               Image.asset(
                 'assets/images/gplogo.png',
                 width: 150,
@@ -30,11 +31,9 @@ class _FinishScreenState extends State<FinishScreen> {
               ),
               Text(
                 "Thank you for Your Feedback",
-
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
               ),
-
               SizedBox(
                 height: 10,
               ),
@@ -54,19 +53,19 @@ class _FinishScreenState extends State<FinishScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-
                   Text(
                     "Dial 112",
-                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold,color: Colors.red),
+                    style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.red),
                   ),
                   Text(
-                  " for any emergency",
-                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-                ),
+                    " for any emergency",
+                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                  ),
                 ],
               ),
-
-
               SizedBox(
                 height: 50,
               ),
@@ -75,22 +74,33 @@ class _FinishScreenState extends State<FinishScreen> {
                 children: [
                   Text(
                     "Download the ",
-                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, decoration: TextDecoration.underline, ),
+                    style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                      decoration: TextDecoration.underline,
+                    ),
                     textAlign: TextAlign.center,
                   ),
                   Text(
                     "citizen service app ",
-                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, decoration: TextDecoration.underline, color: Colors.blue),
+                    style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        decoration: TextDecoration.underline,
+                        color: Colors.blue),
                     textAlign: TextAlign.center,
                   ),
                 ],
               ),
               Text(
                 " \n for centric services  of Gujarat police",
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, decoration: TextDecoration.underline, ),
+                style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                  decoration: TextDecoration.underline,
+                ),
                 textAlign: TextAlign.center,
               ),
-
               SizedBox(
                 height: 80,
               ),
@@ -103,7 +113,10 @@ class _FinishScreenState extends State<FinishScreen> {
                   ),
                   Text(
                     "112 ડાયલ ",
-                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold,color: Colors.red),
+                    style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.red),
                   ),
                   Text(
                     "કરો",
@@ -116,7 +129,11 @@ class _FinishScreenState extends State<FinishScreen> {
               ),
               Text(
                 "ગુજરાત પોલીસ નાગરિક સેવા માટે અહીં ક્લિક કરો",
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, decoration: TextDecoration.underline,color: Colors.blue),
+                style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    decoration: TextDecoration.underline,
+                    color: Colors.blue),
               ),
             ],
           ),

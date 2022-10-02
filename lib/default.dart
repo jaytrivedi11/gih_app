@@ -5,6 +5,13 @@ class DefaultScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      body: Center(
+        child: Image.asset(
+          "assets/images/not-found.png",
+          width: 100,
+        ),
+      ),
+    );
   }
 }
