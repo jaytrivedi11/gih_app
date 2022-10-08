@@ -38,6 +38,7 @@ class ApiService {
     return index[q2];
   }
 
+
   Future<bool> sendFeedback(
       String name,
       String mobile,
@@ -50,7 +51,7 @@ class ApiService {
       String districtID) async {
     try {
       var url = Uri.parse(ApiConstants.baseUrl + ApiConstants.feedback);
-
+      print("${stars}");
       var body = {
         "name": name,
         "mobile": mobile,

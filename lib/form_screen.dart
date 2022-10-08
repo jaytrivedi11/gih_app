@@ -36,7 +36,7 @@ class _FormScreenState extends State<FormScreen> {
   var firstQuestion = "";
   var secondQuetion = "";
   var feedback = "";
-  var rating = "";
+  var ratings = "";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,10 +79,15 @@ class _FormScreenState extends State<FormScreen> {
               Column(
                 children: [
                   ListTile(
+                    onTap: () {
+                      setState(() {
+                        _character = FirstQuestion.a;
+                      });
+                    },
                     contentPadding: const EdgeInsets.only(
                         left: 0.0, right: 0.0, top: 0.0, bottom: 0.0),
                     title: const Text(
-                        'a. Through a person known to a police officer'),
+                        'Through a person known to a police officer'),
                     leading: Radio<FirstQuestion>(
                       value: FirstQuestion.a,
                       groupValue: _character,
@@ -94,10 +99,14 @@ class _FormScreenState extends State<FormScreen> {
                       },
                     ),
                   ),
-                  ListTile(
+                  ListTile(onTap: () {
+                    setState(() {
+                      _character = FirstQuestion.b;
+                    });
+                  },
                     contentPadding: const EdgeInsets.only(
                         left: 0.0, right: 0.0, top: 0.0, bottom: 0.0),
-                    title: const Text('b. With a neighbour/ local leader'),
+                    title: const Text('With a neighbour/ local leader'),
                     leading: Radio<FirstQuestion>(
                       value: FirstQuestion.b,
                       groupValue: _character,
@@ -108,10 +117,14 @@ class _FormScreenState extends State<FormScreen> {
                       },
                     ),
                   ),
-                  ListTile(
+                  ListTile(onTap: () {
+                    setState(() {
+                      _character = FirstQuestion.c;
+                    });
+                  },
                     contentPadding: const EdgeInsets.only(
                         left: 0.0, right: 0.0, top: 0.0, bottom: 0.0),
-                    title: const Text('c. On your own'),
+                    title: const Text('On your own'),
                     leading: Radio<FirstQuestion>(
                       value: FirstQuestion.c,
                       groupValue: _character,
@@ -140,10 +153,14 @@ class _FormScreenState extends State<FormScreen> {
               ),
               Column(
                 children: [
-                  ListTile(
+                  ListTile(onTap: () {
+                    setState(() {
+                      _secondQuestion = SecondQuestion.a;
+                    });
+                  },
                     contentPadding: const EdgeInsets.only(
                         left: 0.0, right: 0.0, top: 0.0, bottom: 0.0),
-                    title: const Text('a. More than 15 minutes'),
+                    title: const Text('More than 15 minutes'),
                     leading: Radio<SecondQuestion>(
                       value: SecondQuestion.a,
                       groupValue: _secondQuestion,
@@ -154,10 +171,14 @@ class _FormScreenState extends State<FormScreen> {
                       },
                     ),
                   ),
-                  ListTile(
+                  ListTile(onTap: () {
+                    setState(() {
+                      _secondQuestion = SecondQuestion.b;
+                    });
+                  },
                     contentPadding: const EdgeInsets.only(
                         left: 0.0, right: 0.0, top: 0.0, bottom: 0.0),
-                    title: const Text('b. 15 minutes'),
+                    title: const Text('15 minutes'),
                     leading: Radio<SecondQuestion>(
                       value: SecondQuestion.b,
                       groupValue: _secondQuestion,
@@ -168,10 +189,14 @@ class _FormScreenState extends State<FormScreen> {
                       },
                     ),
                   ),
-                  ListTile(
+                  ListTile(onTap: () {
+                    setState(() {
+                      _secondQuestion = SecondQuestion.c;
+                    });
+                  },
                     contentPadding: const EdgeInsets.only(
                         left: 0.0, right: 0.0, top: 0.0, bottom: 0.0),
-                    title: const Text('c. 10 minutes'),
+                    title: const Text('10 minutes'),
                     leading: Radio<SecondQuestion>(
                       value: SecondQuestion.c,
                       groupValue: _secondQuestion,
@@ -183,9 +208,14 @@ class _FormScreenState extends State<FormScreen> {
                     ),
                   ),
                   ListTile(
+                    onTap: () {
+                      setState(() {
+                        _secondQuestion = SecondQuestion.d;
+                      });
+                    },
                     contentPadding: const EdgeInsets.only(
                         left: 0.0, right: 0.0, top: 0.0, bottom: 0.0),
-                    title: const Text('d. 5 minutes'),
+                    title: const Text('5 minutes'),
                     leading: Radio<SecondQuestion>(
                       value: SecondQuestion.d,
                       groupValue: _secondQuestion,
@@ -197,9 +227,14 @@ class _FormScreenState extends State<FormScreen> {
                     ),
                   ),
                   ListTile(
+                    onTap: () {
+                      setState(() {
+                        _secondQuestion = SecondQuestion.e;
+                      });
+                    },
                     contentPadding: const EdgeInsets.only(
                         left: 0.0, right: 0.0, top: 0.0, bottom: 0.0),
-                    title: const Text('e. Immediately'),
+                    title: const Text('Immediately'),
                     leading: Radio<SecondQuestion>(
                       value: SecondQuestion.e,
                       groupValue: _secondQuestion,
@@ -291,7 +326,7 @@ class _FormScreenState extends State<FormScreen> {
                   ),
                   glowColor: Colors.amber,
                   onRatingUpdate: (rating) {
-                    rating = rating;
+                    ratings = rating.toString();
                   },
                 ),
               ),
@@ -328,8 +363,8 @@ class _FormScreenState extends State<FormScreen> {
                             widget.mobile,
                             _character,
                             _secondQuestion,
-                            feedback,
-                            3,
+                            feedback, 
+                            int.parse(ratings),
                             widget.policstationid,
                             widget.subdivisionid,
                             widget.districtid);
